@@ -61,11 +61,17 @@ Plans:
   4. Code logic answer drafts include source evidence and are skipped when evidence is missing.
 
 **Plans**: 3 plans
-
 Plans:
+**Wave 1**
 
 - [ ] 02-01: CodeGraph detection, source lookup adapter, and fallback evidence mode
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
 - [ ] 02-02: No-answer gates for experiment, hardware, dependency, and environment issues
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
 - [ ] 02-03: Source-backed answer draft previews and reply-worthiness policy
 
 ### Phase 3: Stale Cleanup and Controlled Apply
