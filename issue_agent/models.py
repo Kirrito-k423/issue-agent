@@ -14,6 +14,17 @@ IssueCategory = Literal[
 ]
 
 SourceLookupMode = Literal["codegraph", "fallback_search", "unavailable"]
+LinkedReferenceKind = Literal["issue", "pull_request", "unknown"]
+LinkedReferenceRelation = Literal[
+    "mentions",
+    "duplicate",
+    "resolved_by",
+    "superseded_by",
+    "blocked_by",
+    "waiting_for_info",
+    "unknown",
+]
+LinkedReferenceStatus = Literal["open", "closed", "merged", "unknown", "unresolved"]
 
 
 class IssueComment(BaseModel):
@@ -51,6 +62,17 @@ class EvidenceRef(BaseModel):
     line_end: int | None = Field(default=None, ge=1)
     codegraph_available: bool | None = None
     fallback_reason: str | None = None
+
+
+class LinkedReference(BaseModel):
+    repository: str
+    number: int = Field(ge=1)
+    kind: LinkedReferenceKind = "unknown"
+    relation: LinkedReferenceRelation = "mentions"
+    source: str
+    reason: str
+    status: LinkedReferenceStatus = "unknown"
+    url: str | None = None
 
 
 class ClassifierProposal(BaseModel):
