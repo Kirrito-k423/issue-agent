@@ -1,6 +1,6 @@
 from collections.abc import Iterable
 
-from issue_agent.models import ClosureDecision, PreviewRecord
+from issue_agent.models import ApplyResult, ClosureDecision, PreviewRecord
 
 
 def render_classification_preview(records: Iterable[PreviewRecord]) -> str:
@@ -71,6 +71,26 @@ def render_close_preview(records: Iterable[ClosureDecision]) -> str:
         lines.append(
             f"| #{record.issue_number} | {str(record.suitable_to_close).lower()} | "
             f"{record.closure_reason} | {record.risk_level} | {evidence} | {draft} |"
+        )
+    lines.append("")
+    return "\n".join(lines)
+
+
+def render_apply_results(records: Iterable[ApplyResult]) -> str:
+    lines = [
+        "# Issue Agent Apply Results",
+        "",
+        "Mode: apply",
+        "Safety: actions were requested explicitly after preview validation.",
+        "",
+        "| Action | Issue | Type | Status | Error |",
+        "|--------|-------|------|--------|-------|",
+    ]
+    for record in records:
+        error = (record.error or "-").replace("|", "\\|")
+        lines.append(
+            f"| {record.action_id} | #{record.issue_number} | {record.action_type} | "
+            f"{record.status} | {error} |"
         )
     lines.append("")
     return "\n".join(lines)

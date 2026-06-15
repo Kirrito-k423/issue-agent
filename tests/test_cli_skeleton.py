@@ -44,3 +44,11 @@ def test_preview_writes_bounded_state_artifacts(tmp_path) -> None:
     assert "Applyable" in preview
     assert "Rejected" in preview
     assert str(preview_path) in result.output
+
+
+def test_cli_exposes_explicit_apply_command() -> None:
+    runner = CliRunner()
+    result = runner.invoke(app, ["--help"])
+
+    assert result.exit_code == 0, result.output
+    assert "apply-close" in result.output

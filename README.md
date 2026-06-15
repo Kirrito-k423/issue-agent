@@ -22,9 +22,17 @@ python -m issue_agent.cli close-preview \
   --issues-file examples/issues.fixture.json \
   --repo Kirrito-k423/issue-agent \
   --state-root /tmp/issue-agent-close-preview
+
+python -m issue_agent.cli apply-close \
+  --config examples/config.yaml \
+  --repo Kirrito-k423/issue-agent \
+  --state-root /tmp/issue-agent-close-preview \
+  --issue-number 6 \
+  --action close
 ```
 
 The preview commands write local artifacts only. They do not edit, comment on, close, or label GitHub issues.
+`apply-close` is different: it can run `gh issue` label, comment, and close commands, but only after a matching close preview record exists under the selected state root.
 
 ## Configuration
 
@@ -48,3 +56,4 @@ Use the proxy variables when local GitHub or model-provider access needs the Chi
 - Missing GitHub labels are rejected rather than created.
 - Answer drafts require supporting evidence and are written locally under `answer/drafts/`.
 - Close previews require explicit evidence and are written locally under `close/`.
+- Apply mode requires reviewed close preview records and never creates missing labels automatically.

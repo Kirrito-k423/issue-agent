@@ -34,6 +34,8 @@ ClosureReason = Literal[
     "not_suitable",
 ]
 RiskLevel = Literal["low", "medium", "high"]
+ApplyActionType = Literal["add_label", "remove_label", "comment", "close"]
+ApplyStatus = Literal["pending", "applied", "failed", "skipped"]
 
 
 class IssueComment(BaseModel):
@@ -94,6 +96,24 @@ class ClosureDecision(BaseModel):
     evidence_refs: list[EvidenceRef] = Field(default_factory=list)
     linked_references: list[LinkedReference] = Field(default_factory=list)
     draft_comment: str | None = None
+    github_mutation_applied: bool = False
+
+
+class ApplyAction(BaseModel):
+    issue_number: int
+    action_type: ApplyActionType
+    value: str | None = None
+    body: str | None = None
+    requires_comment: bool = False
+
+
+class ApplyResult(BaseModel):
+    action_id: str
+    issue_number: int
+    action_type: ApplyActionType
+    status: ApplyStatus
+    command: list[str] = Field(default_factory=list)
+    error: str | None = None
     github_mutation_applied: bool = False
 
 
