@@ -122,7 +122,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 04-02: Regression fixture suite and safety verification
+- [x] 04-02: Regression fixture suite and safety verification
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -142,4 +142,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | 1. Core Preview Pipeline | 3/3 | Complete    | 2026-06-15 |
 | 2. Code-Aware Triage and Answers | 3/3 | Complete   | 2026-06-15 |
 | 3. Stale Cleanup and Controlled Apply | 3/3 | Complete   | 2026-06-15 |
-| 4. Summary, Tests, and Operator Docs | 1/3 | In Progress|  |
+| 4. Summary, Tests, and Operator Docs | 2/3 | In Progress|  |
