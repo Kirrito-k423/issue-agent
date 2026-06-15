@@ -58,7 +58,7 @@ Requirements for the initial release. Each maps to roadmap phases.
 - [x] **STATE-01**: Each workflow writes bounded `records.json`, `pending-batch.json`, and `latest-preview.md` artifacts.
 - [x] **STATE-02**: Reprocessing an issue replaces that issue's canonical record instead of appending unbounded history.
 - [x] **STATE-03**: Preview files show model proposal, policy result, evidence references, and whether any GitHub mutation was applied.
-- [ ] **STATE-04**: User can generate an aggregate summary report from classification, answer, and closure records.
+- [x] **STATE-04**: User can generate an aggregate summary report from classification, answer, and closure records.
 
 ### Apply Mode
 
@@ -157,7 +157,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | STATE-01 | Phase 1 | Complete |
 | STATE-02 | Phase 1 | Complete |
 | STATE-03 | Phase 1 | Complete |
-| STATE-04 | Phase 4 | Pending |
+| STATE-04 | Phase 4 | Complete |
 | APPLY-01 | Phase 3 | Complete |
 | APPLY-02 | Phase 3 | Complete |
 | APPLY-03 | Phase 3 | Complete |

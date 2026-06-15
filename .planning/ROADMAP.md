@@ -118,7 +118,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 04-01: Aggregate summary report and tracking-output preview
+- [x] 04-01: Aggregate summary report and tracking-output preview
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -142,4 +142,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | 1. Core Preview Pipeline | 3/3 | Complete    | 2026-06-15 |
 | 2. Code-Aware Triage and Answers | 3/3 | Complete   | 2026-06-15 |
 | 3. Stale Cleanup and Controlled Apply | 3/3 | Complete   | 2026-06-15 |
-| 4. Summary, Tests, and Operator Docs | 0/3 | Planned    | - |
+| 4. Summary, Tests, and Operator Docs | 1/3 | In Progress|  |
