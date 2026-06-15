@@ -37,7 +37,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 Plans:
 **Wave 1**
 
-- [ ] 01-01: CLI, config, provider settings, and proxy-safe secret handling
+- [x] 01-01: CLI, config, provider settings, and proxy-safe secret handling
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -117,7 +117,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Preview Pipeline | 0/3 | Not started | - |
+| 1. Core Preview Pipeline | 1/3 | In Progress|  |
 | 2. Code-Aware Triage and Answers | 0/3 | Not started | - |
 | 3. Stale Cleanup and Controlled Apply | 0/3 | Not started | - |
 | 4. Summary, Tests, and Operator Docs | 0/3 | Not started | - |

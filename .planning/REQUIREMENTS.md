@@ -9,19 +9,19 @@ Requirements for the initial release. Each maps to roadmap phases.
 
 ### Configuration
 
-- [ ] **CONF-01**: User can define a repository profile with repo name, state path, label policy, model provider, and write policy.
-- [ ] **CONF-02**: User can configure MiniMax or another OpenAI-compatible model endpoint without storing secrets in tracked files.
-- [ ] **CONF-03**: User can configure proxy-related environment behavior for GitHub and model-provider access.
+- [x] **CONF-01**: User can define a repository profile with repo name, state path, label policy, model provider, and write policy.
+- [x] **CONF-02**: User can configure MiniMax or another OpenAI-compatible model endpoint without storing secrets in tracked files.
+- [x] **CONF-03**: User can configure proxy-related environment behavior for GitHub and model-provider access.
 
 ### GitHub Intake
 
-- [ ] **GH-01**: User can fetch open GitHub issues in deterministic batches with title, body, labels, author, URL, timestamps, and comments.
+- [x] **GH-01**: User can fetch open GitHub issues in deterministic batches with title, body, labels, author, URL, timestamps, and comments.
 - [ ] **GH-02**: User can fetch the repository's existing label set and prevent proposals for labels that do not exist.
 - [ ] **GH-03**: User can inspect linked issue and PR references needed for stale cleanup decisions.
 
 ### Classification
 
-- [ ] **CLSF-01**: User can run an LLM-backed classifier that returns a structured decision schema for each issue.
+- [x] **CLSF-01**: User can run an LLM-backed classifier that returns a structured decision schema for each issue.
 - [ ] **CLSF-02**: Classifier decisions include category, confidence, proposed action, evidence requirements, no-action reason, and proposed labels.
 - [ ] **CLSF-03**: Classifier supports at least these categories: experiment/reproduction, code logic question, usage question, stale cleanup candidate, feature/enhancement, bug report, and unknown/unsafe.
 - [ ] **CLSF-04**: Invalid model output is rejected or repaired once; unresolved invalid output becomes human review instead of public action.
@@ -37,7 +37,7 @@ Requirements for the initial release. Each maps to roadmap phases.
 
 - [ ] **SAFE-01**: Experiment, hardware, dependency, or environment reproduction issues are not answered unless verified run evidence exists.
 - [ ] **SAFE-02**: Under uncertainty, the agent emits no public mutation and records why the issue needs human review or more information.
-- [ ] **SAFE-03**: Public comments, labels, and closures are impossible in preview mode.
+- [x] **SAFE-03**: Public comments, labels, and closures are impossible in preview mode.
 - [ ] **SAFE-04**: Closure recommendations require explicit evidence for resolved, duplicate, superseded, unsupported, or waiting-for-information status.
 - [ ] **SAFE-05**: The agent never creates new GitHub labels unless the user explicitly enables label creation.
 
@@ -55,9 +55,9 @@ Requirements for the initial release. Each maps to roadmap phases.
 
 ### State and Review
 
-- [ ] **STATE-01**: Each workflow writes bounded `records.json`, `pending-batch.json`, and `latest-preview.md` artifacts.
-- [ ] **STATE-02**: Reprocessing an issue replaces that issue's canonical record instead of appending unbounded history.
-- [ ] **STATE-03**: Preview files show model proposal, policy result, evidence references, and whether any GitHub mutation was applied.
+- [x] **STATE-01**: Each workflow writes bounded `records.json`, `pending-batch.json`, and `latest-preview.md` artifacts.
+- [x] **STATE-02**: Reprocessing an issue replaces that issue's canonical record instead of appending unbounded history.
+- [x] **STATE-03**: Preview files show model proposal, policy result, evidence references, and whether any GitHub mutation was applied.
 - [ ] **STATE-04**: User can generate an aggregate summary report from classification, answer, and closure records.
 
 ### Apply Mode
@@ -129,13 +129,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CONF-01 | Phase 1 | Pending |
-| CONF-02 | Phase 1 | Pending |
-| CONF-03 | Phase 1 | Pending |
-| GH-01 | Phase 1 | Pending |
+| CONF-01 | Phase 1 | Complete |
+| CONF-02 | Phase 1 | Complete |
+| CONF-03 | Phase 1 | Complete |
+| GH-01 | Phase 1 | Complete |
 | GH-02 | Phase 1 | Pending |
 | GH-03 | Phase 3 | Pending |
-| CLSF-01 | Phase 1 | Pending |
+| CLSF-01 | Phase 1 | Complete |
 | CLSF-02 | Phase 1 | Pending |
 | CLSF-03 | Phase 1 | Pending |
 | CLSF-04 | Phase 1 | Pending |
@@ -145,7 +145,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CODE-04 | Phase 2 | Pending |
 | SAFE-01 | Phase 2 | Pending |
 | SAFE-02 | Phase 2 | Pending |
-| SAFE-03 | Phase 1 | Pending |
+| SAFE-03 | Phase 1 | Complete |
 | SAFE-04 | Phase 3 | Pending |
 | SAFE-05 | Phase 1 | Pending |
 | ANS-01 | Phase 2 | Pending |
@@ -154,9 +154,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CLOSE-01 | Phase 3 | Pending |
 | CLOSE-02 | Phase 3 | Pending |
 | CLOSE-03 | Phase 3 | Pending |
-| STATE-01 | Phase 1 | Pending |
-| STATE-02 | Phase 1 | Pending |
-| STATE-03 | Phase 1 | Pending |
+| STATE-01 | Phase 1 | Complete |
+| STATE-02 | Phase 1 | Complete |
+| STATE-03 | Phase 1 | Complete |
 | STATE-04 | Phase 4 | Pending |
 | APPLY-01 | Phase 3 | Pending |
 | APPLY-02 | Phase 3 | Pending |
@@ -164,6 +164,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | APPLY-04 | Phase 3 | Pending |
 
 **Coverage:**
+
 - v1 requirements: 33 total
 - Mapped to phases: 33
 - Unmapped: 0
