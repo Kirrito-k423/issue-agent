@@ -1,9 +1,9 @@
-import json
 from pathlib import Path
 
 import typer
 
 from issue_agent.config import load_config
+from issue_agent.github import load_fixture_issues, load_fixture_labels
 from issue_agent.state import write_batch_preview
 
 
@@ -24,17 +24,24 @@ def preview(
     """Run a local preview classification pass."""
     app_config = load_config(config)
     target_state = state_root or app_config.state_root
-    issues = json.loads(issues_file.read_text(encoding="utf-8"))
+    issues = load_fixture_issues(issues_file)
+    labels = load_fixture_labels(app_config.label_policy.allowed_labels)
+    available_label_names = [label.name for label in labels]
+    available_label_set = set(available_label_names)
     records = [
         {
-            "issue_number": issue["number"],
-            "title": issue["title"],
+            "issue_number": issue.number,
+            "title": issue.title,
             "category": "unknown_unsafe",
             "status": "preview_only",
             "model_provider": app_config.provider.name,
-            "labels_proposed": list(issue.get("labels", [])),
-            "labels_available": list(app_config.label_policy.allowed_labels),
-            "labels_rejected": [],
+            "labels_proposed": list(issue.labels),
+            "labels_available": available_label_names,
+            "labels_rejected": [
+                {"name": label, "reason": "label_not_in_repository"}
+                for label in issue.labels
+                if label not in available_label_set
+            ],
             "no_action_reason": "Phase 1 skeleton records previews only.",
             "github_mutation_applied": False,
         }

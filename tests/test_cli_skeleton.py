@@ -34,6 +34,8 @@ def test_preview_writes_bounded_state_artifacts(tmp_path) -> None:
     assert isinstance(records, dict)
     assert set(records) == {"1", "2"}
     assert records["1"]["github_mutation_applied"] is False
+    assert records["1"]["labels_available"] == ["bug", "question", "enhancement"]
+    assert "labels_rejected" in records["1"]
 
     preview = preview_path.read_text(encoding="utf-8")
     assert "Mode: preview" in preview
