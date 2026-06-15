@@ -1,4 +1,17 @@
+from typing import Literal
+
 from pydantic import BaseModel, Field
+
+
+IssueCategory = Literal[
+    "experiment_reproduction",
+    "code_logic_question",
+    "usage_question",
+    "stale_cleanup_candidate",
+    "feature_enhancement",
+    "bug_report",
+    "unknown_unsafe",
+]
 
 
 class IssueComment(BaseModel):
@@ -22,3 +35,46 @@ class IssueInput(BaseModel):
 class LabelInfo(BaseModel):
     name: str
     description: str | None = None
+
+
+class EvidenceRef(BaseModel):
+    kind: str
+    value: str
+    reason: str
+
+
+class ClassifierProposal(BaseModel):
+    category: IssueCategory
+    confidence: float = Field(ge=0.0, le=1.0)
+    proposed_action: str
+    evidence_needs: list[str] = Field(default_factory=list)
+    no_action_reason: str | None = None
+    labels_proposed: list[str] = Field(default_factory=list)
+    reason: str
+
+
+class LabelRejection(BaseModel):
+    name: str
+    reason: str
+
+
+class PolicyDecision(BaseModel):
+    labels_applyable: list[str] = Field(default_factory=list)
+    labels_rejected: list[LabelRejection] = Field(default_factory=list)
+    status: Literal["preview_ready", "human_review", "blocked"] = "preview_ready"
+    reason: str
+
+
+class PreviewRecord(BaseModel):
+    issue_number: int
+    title: str
+    model_proposal: ClassifierProposal
+    policy_decision: PolicyDecision
+    evidence_refs: list[EvidenceRef] = Field(default_factory=list)
+    github_mutation_applied: bool = False
+
+
+class BatchPreview(BaseModel):
+    mode: Literal["preview"] = "preview"
+    workflow: str
+    records: list[PreviewRecord] = Field(default_factory=list)
