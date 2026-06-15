@@ -119,3 +119,13 @@ def test_unresolved_invalid_output_becomes_human_review() -> None:
     assert calls == 1
     assert parsed.status == "human_review"
     assert parsed.reason == "invalid_classifier_output"
+
+
+def test_repair_exception_becomes_human_review() -> None:
+    def repair(_: str) -> str:
+        raise RuntimeError("repair provider failed")
+
+    parsed = parse_or_human_review("{not-json", repair=repair)
+
+    assert parsed.status == "human_review"
+    assert parsed.reason == "invalid_classifier_output"

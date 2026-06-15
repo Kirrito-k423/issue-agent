@@ -62,7 +62,7 @@ def parse_or_human_review(raw: str, repair: Callable[[str], str] | None = None) 
         if repair is not None:
             try:
                 return ClassifierProposal.model_validate(json.loads(repair(raw)))
-            except (json.JSONDecodeError, ValidationError, TypeError):
+            except (Exception,):
                 pass
     return PolicyDecision(
         labels_applyable=[],
