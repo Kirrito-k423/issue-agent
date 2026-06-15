@@ -28,15 +28,15 @@ Requirements for the initial release. Each maps to roadmap phases.
 
 ### Code Evidence
 
-- [ ] **CODE-01**: When the target repository contains `.codegraph/`, the agent uses CodeGraph before grep/find to locate relevant code.
-- [ ] **CODE-02**: When CodeGraph is unavailable, the agent records fallback mode and uses source search or file reads to gather evidence.
+- [x] **CODE-01**: When the target repository contains `.codegraph/`, the agent uses CodeGraph before grep/find to locate relevant code.
+- [x] **CODE-02**: When CodeGraph is unavailable, the agent records fallback mode and uses source search or file reads to gather evidence.
 - [ ] **CODE-03**: Code logic answers require source evidence before a draft answer can be generated.
-- [ ] **CODE-04**: Source evidence records include repository-relative paths, symbols or snippets, and the reason each item is relevant.
+- [x] **CODE-04**: Source evidence records include repository-relative paths, symbols or snippets, and the reason each item is relevant.
 
 ### Safety Policy
 
 - [ ] **SAFE-01**: Experiment, hardware, dependency, or environment reproduction issues are not answered unless verified run evidence exists.
-- [ ] **SAFE-02**: Under uncertainty, the agent emits no public mutation and records why the issue needs human review or more information.
+- [x] **SAFE-02**: Under uncertainty, the agent emits no public mutation and records why the issue needs human review or more information.
 - [x] **SAFE-03**: Public comments, labels, and closures are impossible in preview mode.
 - [ ] **SAFE-04**: Closure recommendations require explicit evidence for resolved, duplicate, superseded, unsupported, or waiting-for-information status.
 - [x] **SAFE-05**: The agent never creates new GitHub labels unless the user explicitly enables label creation.
@@ -139,12 +139,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CLSF-02 | Phase 1 | Complete |
 | CLSF-03 | Phase 1 | Complete |
 | CLSF-04 | Phase 1 | Complete |
-| CODE-01 | Phase 2 | Pending |
-| CODE-02 | Phase 2 | Pending |
+| CODE-01 | Phase 2 | Complete |
+| CODE-02 | Phase 2 | Complete |
 | CODE-03 | Phase 2 | Pending |
-| CODE-04 | Phase 2 | Pending |
+| CODE-04 | Phase 2 | Complete |
 | SAFE-01 | Phase 2 | Pending |
-| SAFE-02 | Phase 2 | Pending |
+| SAFE-02 | Phase 2 | Complete |
 | SAFE-03 | Phase 1 | Complete |
 | SAFE-04 | Phase 3 | Pending |
 | SAFE-05 | Phase 1 | Complete |
