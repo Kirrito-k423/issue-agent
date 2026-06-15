@@ -1,7 +1,10 @@
 import json
 from pathlib import Path
 
+from typer.testing import CliRunner
+
 from issue_agent.closure import build_close_preview_records
+from issue_agent.cli import app
 from issue_agent.github import load_fixture_issues
 from issue_agent.state import write_close_preview
 
@@ -61,3 +64,27 @@ def test_close_preview_markdown_mentions_safety(tmp_path) -> None:
     preview = paths["latest_preview"].read_text(encoding="utf-8")
     assert "Mode: preview" in preview
     assert "no GitHub issues were closed" in preview
+
+
+def test_close_preview_cli_writes_local_artifacts(tmp_path) -> None:
+    runner = CliRunner()
+    result = runner.invoke(
+        app,
+        [
+            "close-preview",
+            "--config",
+            "examples/config.yaml",
+            "--issues-file",
+            "examples/issues.fixture.json",
+            "--repo",
+            REPO,
+            "--state-root",
+            str(tmp_path),
+        ],
+    )
+
+    assert result.exit_code == 0, result.output
+    assert "no GitHub issues were closed" in result.output
+    assert (tmp_path / "close" / "records.json").exists()
+    assert (tmp_path / "close" / "pending-batch.json").exists()
+    assert (tmp_path / "close" / "latest-preview.md").exists()

@@ -16,6 +16,12 @@ python -m issue_agent.cli answer-preview \
   --issues-file examples/issues.fixture.json \
   --repo-root tests/fixtures/source_repo \
   --state-root /tmp/issue-agent-answer-preview
+
+python -m issue_agent.cli close-preview \
+  --config examples/config.yaml \
+  --issues-file examples/issues.fixture.json \
+  --repo Kirrito-k423/issue-agent \
+  --state-root /tmp/issue-agent-close-preview
 ```
 
 The preview commands write local artifacts only. They do not edit, comment on, close, or label GitHub issues.
@@ -41,3 +47,4 @@ Use the proxy variables when local GitHub or model-provider access needs the Chi
 - State is bounded under `.issue-agent/state/<owner>__<repo>/`.
 - Missing GitHub labels are rejected rather than created.
 - Answer drafts require supporting evidence and are written locally under `answer/drafts/`.
+- Close previews require explicit evidence and are written locally under `close/`.
