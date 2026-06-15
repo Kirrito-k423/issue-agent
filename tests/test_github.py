@@ -12,8 +12,8 @@ def test_fixture_issues_validate_into_issue_inputs() -> None:
     raw_issues = json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))
     issues = [IssueInput.model_validate(raw) for raw in raw_issues]
 
-    assert len(issues) >= 2
-    assert [issue.number for issue in issues] == [1, 2]
+    assert len(issues) >= 4
+    assert [issue.number for issue in issues] == [1, 2, 3, 4]
     assert issues[0].comments[0].author == "maintainer-a"
 
 
@@ -27,7 +27,7 @@ def test_label_info_accepts_optional_description() -> None:
 def test_fixture_issue_loader_preserves_order() -> None:
     issues = load_fixture_issues(FIXTURE_PATH)
 
-    assert [issue.number for issue in issues] == [1, 2]
+    assert [issue.number for issue in issues] == [1, 2, 3, 4]
     assert issues[0].labels == ["question"]
 
 
