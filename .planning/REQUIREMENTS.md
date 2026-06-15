@@ -129,45 +129,45 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CONF-01 | TBD | Pending |
-| CONF-02 | TBD | Pending |
-| CONF-03 | TBD | Pending |
-| GH-01 | TBD | Pending |
-| GH-02 | TBD | Pending |
-| GH-03 | TBD | Pending |
-| CLSF-01 | TBD | Pending |
-| CLSF-02 | TBD | Pending |
-| CLSF-03 | TBD | Pending |
-| CLSF-04 | TBD | Pending |
-| CODE-01 | TBD | Pending |
-| CODE-02 | TBD | Pending |
-| CODE-03 | TBD | Pending |
-| CODE-04 | TBD | Pending |
-| SAFE-01 | TBD | Pending |
-| SAFE-02 | TBD | Pending |
-| SAFE-03 | TBD | Pending |
-| SAFE-04 | TBD | Pending |
-| SAFE-05 | TBD | Pending |
-| ANS-01 | TBD | Pending |
-| ANS-02 | TBD | Pending |
-| ANS-03 | TBD | Pending |
-| CLOSE-01 | TBD | Pending |
-| CLOSE-02 | TBD | Pending |
-| CLOSE-03 | TBD | Pending |
-| STATE-01 | TBD | Pending |
-| STATE-02 | TBD | Pending |
-| STATE-03 | TBD | Pending |
-| STATE-04 | TBD | Pending |
-| APPLY-01 | TBD | Pending |
-| APPLY-02 | TBD | Pending |
-| APPLY-03 | TBD | Pending |
-| APPLY-04 | TBD | Pending |
+| CONF-01 | Phase 1 | Pending |
+| CONF-02 | Phase 1 | Pending |
+| CONF-03 | Phase 1 | Pending |
+| GH-01 | Phase 1 | Pending |
+| GH-02 | Phase 1 | Pending |
+| GH-03 | Phase 3 | Pending |
+| CLSF-01 | Phase 1 | Pending |
+| CLSF-02 | Phase 1 | Pending |
+| CLSF-03 | Phase 1 | Pending |
+| CLSF-04 | Phase 1 | Pending |
+| CODE-01 | Phase 2 | Pending |
+| CODE-02 | Phase 2 | Pending |
+| CODE-03 | Phase 2 | Pending |
+| CODE-04 | Phase 2 | Pending |
+| SAFE-01 | Phase 2 | Pending |
+| SAFE-02 | Phase 2 | Pending |
+| SAFE-03 | Phase 1 | Pending |
+| SAFE-04 | Phase 3 | Pending |
+| SAFE-05 | Phase 1 | Pending |
+| ANS-01 | Phase 2 | Pending |
+| ANS-02 | Phase 2 | Pending |
+| ANS-03 | Phase 2 | Pending |
+| CLOSE-01 | Phase 3 | Pending |
+| CLOSE-02 | Phase 3 | Pending |
+| CLOSE-03 | Phase 3 | Pending |
+| STATE-01 | Phase 1 | Pending |
+| STATE-02 | Phase 1 | Pending |
+| STATE-03 | Phase 1 | Pending |
+| STATE-04 | Phase 4 | Pending |
+| APPLY-01 | Phase 3 | Pending |
+| APPLY-02 | Phase 3 | Pending |
+| APPLY-03 | Phase 3 | Pending |
+| APPLY-04 | Phase 3 | Pending |
 
 **Coverage:**
 - v1 requirements: 33 total
-- Mapped to phases: 0
-- Unmapped: 33
+- Mapped to phases: 33
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-06-15*
-*Last updated: 2026-06-15 after initial definition*
+*Last updated: 2026-06-15 after roadmap creation*
