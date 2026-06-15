@@ -115,12 +115,22 @@ Plans:
   4. No tracked config, preview, state, or docs file contains provider secrets or local-only sensitive details.
 
 **Plans**: 3 plans
-
 Plans:
+**Wave 1**
 
 - [ ] 04-01: Aggregate summary report and tracking-output preview
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
 - [ ] 04-02: Regression fixture suite and safety verification
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
 - [ ] 04-03: Operator documentation, proxy guidance, and release readiness cleanup
+
+**Cross-cutting constraints:**
+
+- D-18: Existing preview/apply semantics remain backward compatible.
 
 ## Progress
 
@@ -132,4 +142,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | 1. Core Preview Pipeline | 3/3 | Complete    | 2026-06-15 |
 | 2. Code-Aware Triage and Answers | 3/3 | Complete   | 2026-06-15 |
 | 3. Stale Cleanup and Controlled Apply | 3/3 | Complete   | 2026-06-15 |
-| 4. Summary, Tests, and Operator Docs | 0/3 | Not started | - |
+| 4. Summary, Tests, and Operator Docs | 0/3 | Planned    | - |
