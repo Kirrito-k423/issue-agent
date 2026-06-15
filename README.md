@@ -2,6 +2,8 @@
 
 Issue Agent is a preview-first GitHub issue triage assistant. It is built for maintainers who want simple-model help with issue classification while keeping every public GitHub mutation behind deterministic policy and explicit apply steps.
 
+For the full local workflow, proxy notes, CodeGraph behavior, and release checks, see [docs/OPERATOR_GUIDE.md](docs/OPERATOR_GUIDE.md).
+
 ## Quickstart
 
 ```bash

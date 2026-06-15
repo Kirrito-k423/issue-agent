@@ -6,6 +6,8 @@ from pathlib import Path
 MUTATION_ALLOWED_PATHS = {
     Path("issue_agent/github.py"),
     Path("tests/test_apply.py"),
+    Path("tests/test_regression_workflows.py"),
+    Path("tests/test_safety_regression.py"),
     Path("README.md"),
     Path("docs/OPERATOR_GUIDE.md"),
 }
