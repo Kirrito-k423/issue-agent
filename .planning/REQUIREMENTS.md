@@ -51,7 +51,7 @@ Requirements for the initial release. Each maps to roadmap phases.
 
 - [x] **CLOSE-01**: User can preview stale issue or PR cleanup recommendations with current state, closure reason, evidence references, and risk level.
 - [x] **CLOSE-02**: Roadmap, help-wanted, open contribution, and open-PR issues are not recommended for closure unless clear supersession or completion evidence exists.
-- [ ] **CLOSE-03**: User can apply approved closure actions only in explicit apply mode.
+- [x] **CLOSE-03**: User can apply approved closure actions only in explicit apply mode.
 
 ### State and Review
 
@@ -62,10 +62,10 @@ Requirements for the initial release. Each maps to roadmap phases.
 
 ### Apply Mode
 
-- [ ] **APPLY-01**: User can apply approved label changes through GitHub only after preview artifacts exist.
-- [ ] **APPLY-02**: User can post approved comments through GitHub only after preview artifacts exist.
-- [ ] **APPLY-03**: User can close approved issues through GitHub only after preview artifacts exist.
-- [ ] **APPLY-04**: Apply failures preserve preview records and mark the affected issue as failed without retry loops.
+- [x] **APPLY-01**: User can apply approved label changes through GitHub only after preview artifacts exist.
+- [x] **APPLY-02**: User can post approved comments through GitHub only after preview artifacts exist.
+- [x] **APPLY-03**: User can close approved issues through GitHub only after preview artifacts exist.
+- [x] **APPLY-04**: Apply failures preserve preview records and mark the affected issue as failed without retry loops.
 
 ## User Stories
 
@@ -153,15 +153,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ANS-03 | Phase 2 | Complete |
 | CLOSE-01 | Phase 3 | Complete |
 | CLOSE-02 | Phase 3 | Complete |
-| CLOSE-03 | Phase 3 | Pending |
+| CLOSE-03 | Phase 3 | Complete |
 | STATE-01 | Phase 1 | Complete |
 | STATE-02 | Phase 1 | Complete |
 | STATE-03 | Phase 1 | Complete |
 | STATE-04 | Phase 4 | Pending |
-| APPLY-01 | Phase 3 | Pending |
-| APPLY-02 | Phase 3 | Pending |
-| APPLY-03 | Phase 3 | Pending |
-| APPLY-04 | Phase 3 | Pending |
+| APPLY-01 | Phase 3 | Complete |
+| APPLY-02 | Phase 3 | Complete |
+| APPLY-03 | Phase 3 | Complete |
+| APPLY-04 | Phase 3 | Complete |
 
 **Coverage:**
 

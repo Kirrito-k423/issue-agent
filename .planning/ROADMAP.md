@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Core Preview Pipeline** - Config, GitHub intake, schemas, classifier preview, and bounded state. (completed 2026-06-15)
 - [x] **Phase 2: Code-Aware Triage and Answers** - CodeGraph-first evidence, no-answer gates, and answer previews. (completed 2026-06-15)
-- [ ] **Phase 3: Stale Cleanup and Controlled Apply** - Evidence-based stale cleanup plus explicit GitHub apply mode.
+- [x] **Phase 3: Stale Cleanup and Controlled Apply** - Evidence-based stale cleanup plus explicit GitHub apply mode. (completed 2026-06-15)
 - [ ] **Phase 4: Summary, Tests, and Operator Docs** - Aggregate reporting, fixture coverage, proxy docs, and workflow hardening.
 
 ## Phase Details
@@ -99,7 +99,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 03-03: Explicit apply engine for labels, comments, closures, and failure recording
+- [x] 03-03: Explicit apply engine for labels, comments, closures, and failure recording
 
 ### Phase 4: Summary, Tests, and Operator Docs
 
@@ -131,5 +131,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Core Preview Pipeline | 3/3 | Complete    | 2026-06-15 |
 | 2. Code-Aware Triage and Answers | 3/3 | Complete   | 2026-06-15 |
-| 3. Stale Cleanup and Controlled Apply | 2/3 | In Progress|  |
+| 3. Stale Cleanup and Controlled Apply | 3/3 | Complete   | 2026-06-15 |
 | 4. Summary, Tests, and Operator Docs | 0/3 | Not started | - |
