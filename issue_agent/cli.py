@@ -2,8 +2,11 @@ from pathlib import Path
 
 import typer
 
+from issue_agent.classifier import ClassifierProvider, FixtureClassifierProvider
 from issue_agent.config import load_config
 from issue_agent.github import load_fixture_issues, load_fixture_labels
+from issue_agent.models import PreviewRecord
+from issue_agent.policy import apply_policy
 from issue_agent.state import write_batch_preview
 
 
@@ -26,25 +29,17 @@ def preview(
     target_state = state_root or app_config.state_root
     issues = load_fixture_issues(issues_file)
     labels = load_fixture_labels(app_config.label_policy.allowed_labels)
-    available_label_names = [label.name for label in labels]
-    available_label_set = set(available_label_names)
+    available_label_set = {label.name for label in labels}
+    provider: ClassifierProvider = FixtureClassifierProvider()
     records = [
-        {
-            "issue_number": issue.number,
-            "title": issue.title,
-            "category": "unknown_unsafe",
-            "status": "preview_only",
-            "model_provider": app_config.provider.name,
-            "labels_proposed": list(issue.labels),
-            "labels_available": available_label_names,
-            "labels_rejected": [
-                {"name": label, "reason": "label_not_in_repository"}
-                for label in issue.labels
-                if label not in available_label_set
-            ],
-            "no_action_reason": "Phase 1 skeleton records previews only.",
-            "github_mutation_applied": False,
-        }
+        PreviewRecord(
+            issue_number=issue.number,
+            title=issue.title,
+            model_proposal=(proposal := provider.classify(issue)),
+            policy_decision=apply_policy(proposal, available_label_set),
+            evidence_refs=[],
+            github_mutation_applied=False,
+        )
         for issue in issues[: app_config.batch_size]
     ]
     paths = write_batch_preview(target_state, "classify", records)

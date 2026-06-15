@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from issue_agent.models import BatchPreview, PreviewRecord
 from issue_agent.preview import render_classification_preview
 
 
@@ -14,7 +15,7 @@ def _read_records(path: Path) -> dict[str, Any]:
     return raw
 
 
-def write_batch_preview(state_root: Path, workflow: str, records: list[dict]) -> dict[str, Path]:
+def write_batch_preview(state_root: Path, workflow: str, records: list[PreviewRecord]) -> dict[str, Path]:
     workflow_root = state_root / workflow
     workflow_root.mkdir(parents=True, exist_ok=True)
 
@@ -22,19 +23,17 @@ def write_batch_preview(state_root: Path, workflow: str, records: list[dict]) ->
     pending_path = workflow_root / "pending-batch.json"
     preview_path = workflow_root / "latest-preview.md"
 
-    current = _read_records(records_path)
-    for record in records:
-        number = record.get("issue_number", record.get("number"))
-        if number is None:
-            raise ValueError("preview record is missing issue_number")
-        current[str(number)] = record
+    batch = BatchPreview(workflow=workflow, records=records)
 
+    current = _read_records(records_path)
+    for record in batch.records:
+        current[str(record.issue_number)] = record.model_dump(mode="json")
     records_path.write_text(json.dumps(current, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     pending_path.write_text(
-        json.dumps({"mode": "preview", "workflow": workflow, "records": records}, indent=2, sort_keys=True) + "\n",
+        json.dumps(batch.model_dump(mode="json"), indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
-    preview_path.write_text(render_classification_preview(records), encoding="utf-8")
+    preview_path.write_text(render_classification_preview(batch.records), encoding="utf-8")
 
     return {
         "records": records_path,
