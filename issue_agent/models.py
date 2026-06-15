@@ -88,7 +88,9 @@ class PreviewRecord(BaseModel):
     title: str
     model_proposal: ClassifierProposal
     policy_decision: PolicyDecision
+    answer_policy: AnswerPolicyDecision | None = None
     evidence_refs: list[EvidenceRef] = Field(default_factory=list)
+    draft_path: str | None = None
     github_mutation_applied: bool = False
 
 
