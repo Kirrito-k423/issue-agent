@@ -21,19 +21,34 @@ class FixtureClassifierProvider:
         proposed_action = "no_public_action"
         reason = "No safe fixture signal matched this issue."
 
-        if _contains_any(text, ["how", "question", "can i", "is it possible", "?"]):
+        if _contains_any(
+            text,
+            ["reproduce", "reproduction", "environment", "hardware", "dependency", "cuda", "npu", "install"],
+        ):
+            category = "experiment_reproduction"
+            labels = ["bug"]
+            evidence_needs = ["run_evidence"]
+            proposed_action = "request_info"
+            reason = "The fixture issue requires environment or reproduction evidence."
+        elif _contains_any(text, ["source", "code", "function", "implementation", "logic", "where is"]):
+            category = "code_logic_question"
+            labels = ["question"]
+            evidence_needs = ["source_evidence"]
+            proposed_action = "preview_answer"
+            reason = "The fixture issue asks about repository code behavior."
+        elif _contains_any(text, ["how", "question", "can i", "is it possible", "?"]):
             category = "usage_question"
             labels = ["question"]
             evidence_needs = []
             proposed_action = "preview_classification"
             reason = "The fixture issue asks a usage or behavior question."
-        if _contains_any(text, ["bug", "invalid", "malformed", "error", "failure", "crash"]):
+        elif _contains_any(text, ["bug", "invalid", "malformed", "error", "failure", "crash"]):
             category = "bug_report"
             labels = ["bug"]
             evidence_needs = []
             proposed_action = "preview_classification"
             reason = "The fixture issue describes invalid or failing behavior."
-        if _contains_any(text, ["feature", "enhancement", "support", "improve"]):
+        elif _contains_any(text, ["feature", "enhancement", "support", "improve"]):
             category = "feature_enhancement"
             labels = ["enhancement"]
             evidence_needs = []

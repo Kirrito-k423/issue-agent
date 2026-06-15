@@ -26,5 +26,27 @@
     "created_at": "2026-06-03T09:00:00Z",
     "updated_at": "2026-06-03T12:00:00Z",
     "comments": []
+  },
+  {
+    "number": 3,
+    "title": "Question: where is preview mode enforced in the source code?",
+    "body": "I want to understand the code path and function that keeps preview runs from changing GitHub issues.",
+    "labels": ["question"],
+    "author": "maintainer-c",
+    "url": "https://github.com/Kirrito-k423/issue-agent/issues/3",
+    "created_at": "2026-06-04T09:00:00Z",
+    "updated_at": "2026-06-04T09:30:00Z",
+    "comments": []
+  },
+  {
+    "number": 4,
+    "title": "Reproduction: NPU install environment failure",
+    "body": "Can the agent reproduce this dependency failure on an NPU environment with CUDA compatibility packages installed?",
+    "labels": ["bug"],
+    "author": "maintainer-d",
+    "url": "https://github.com/Kirrito-k423/issue-agent/issues/4",
+    "created_at": "2026-06-05T09:00:00Z",
+    "updated_at": "2026-06-05T10:00:00Z",
+    "comments": []
   }
 ]

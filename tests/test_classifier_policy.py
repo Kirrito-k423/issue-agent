@@ -64,6 +64,10 @@ def test_fixture_provider_classifies_fixture_issues() -> None:
     assert proposals[0].labels_proposed == ["question"]
     assert proposals[1].category == "bug_report"
     assert proposals[1].labels_proposed == ["bug"]
+    assert proposals[2].category == "code_logic_question"
+    assert proposals[2].evidence_needs == ["source_evidence"]
+    assert proposals[3].category == "experiment_reproduction"
+    assert proposals[3].evidence_needs == ["run_evidence"]
 
 
 def test_policy_rejects_labels_missing_from_repository() -> None:
