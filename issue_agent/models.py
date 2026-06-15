@@ -13,6 +13,8 @@ IssueCategory = Literal[
     "unknown_unsafe",
 ]
 
+SourceLookupMode = Literal["codegraph", "fallback_search", "unavailable"]
+
 
 class IssueComment(BaseModel):
     author: str
@@ -41,6 +43,14 @@ class EvidenceRef(BaseModel):
     kind: str
     value: str
     reason: str
+    lookup_mode: SourceLookupMode | None = None
+    path: str | None = None
+    symbol: str | None = None
+    snippet: str | None = None
+    line_start: int | None = Field(default=None, ge=1)
+    line_end: int | None = Field(default=None, ge=1)
+    codegraph_available: bool | None = None
+    fallback_reason: str | None = None
 
 
 class ClassifierProposal(BaseModel):
