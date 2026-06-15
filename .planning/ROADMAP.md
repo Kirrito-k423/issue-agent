@@ -88,11 +88,17 @@ Plans:
   4. Apply failures preserve preview data and mark the affected issue failed without retry loops.
 
 **Plans**: 3 plans
-
 Plans:
+**Wave 1**
 
 - [ ] 03-01: Linked issue and PR evidence extraction for stale cleanup
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
 - [ ] 03-02: Closure policy and stale recommendation previews
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
 - [ ] 03-03: Explicit apply engine for labels, comments, closures, and failure recording
 
 ### Phase 4: Summary, Tests, and Operator Docs
