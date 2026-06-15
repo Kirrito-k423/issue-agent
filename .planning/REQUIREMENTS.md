@@ -30,12 +30,12 @@ Requirements for the initial release. Each maps to roadmap phases.
 
 - [x] **CODE-01**: When the target repository contains `.codegraph/`, the agent uses CodeGraph before grep/find to locate relevant code.
 - [x] **CODE-02**: When CodeGraph is unavailable, the agent records fallback mode and uses source search or file reads to gather evidence.
-- [ ] **CODE-03**: Code logic answers require source evidence before a draft answer can be generated.
+- [x] **CODE-03**: Code logic answers require source evidence before a draft answer can be generated.
 - [x] **CODE-04**: Source evidence records include repository-relative paths, symbols or snippets, and the reason each item is relevant.
 
 ### Safety Policy
 
-- [ ] **SAFE-01**: Experiment, hardware, dependency, or environment reproduction issues are not answered unless verified run evidence exists.
+- [x] **SAFE-01**: Experiment, hardware, dependency, or environment reproduction issues are not answered unless verified run evidence exists.
 - [x] **SAFE-02**: Under uncertainty, the agent emits no public mutation and records why the issue needs human review or more information.
 - [x] **SAFE-03**: Public comments, labels, and closures are impossible in preview mode.
 - [ ] **SAFE-04**: Closure recommendations require explicit evidence for resolved, duplicate, superseded, unsupported, or waiting-for-information status.
@@ -45,7 +45,7 @@ Requirements for the initial release. Each maps to roadmap phases.
 
 - [ ] **ANS-01**: User can generate preview-only draft replies for code logic or usage questions when evidence supports an answer.
 - [ ] **ANS-02**: Draft replies cite source files, docs, issue comments, or PR references used as evidence.
-- [ ] **ANS-03**: Reply-worthiness is assessed separately from reply generation, so low-evidence issues are skipped.
+- [x] **ANS-03**: Reply-worthiness is assessed separately from reply generation, so low-evidence issues are skipped.
 
 ### Stale Cleanup
 
@@ -141,16 +141,16 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CLSF-04 | Phase 1 | Complete |
 | CODE-01 | Phase 2 | Complete |
 | CODE-02 | Phase 2 | Complete |
-| CODE-03 | Phase 2 | Pending |
+| CODE-03 | Phase 2 | Complete |
 | CODE-04 | Phase 2 | Complete |
-| SAFE-01 | Phase 2 | Pending |
+| SAFE-01 | Phase 2 | Complete |
 | SAFE-02 | Phase 2 | Complete |
 | SAFE-03 | Phase 1 | Complete |
 | SAFE-04 | Phase 3 | Pending |
 | SAFE-05 | Phase 1 | Complete |
 | ANS-01 | Phase 2 | Pending |
 | ANS-02 | Phase 2 | Pending |
-| ANS-03 | Phase 2 | Pending |
+| ANS-03 | Phase 2 | Complete |
 | CLOSE-01 | Phase 3 | Pending |
 | CLOSE-02 | Phase 3 | Pending |
 | CLOSE-03 | Phase 3 | Pending |

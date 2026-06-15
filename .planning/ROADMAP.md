@@ -68,7 +68,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 02-02: No-answer gates for experiment, hardware, dependency, and environment issues
+- [x] 02-02: No-answer gates for experiment, hardware, dependency, and environment issues
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -124,6 +124,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Core Preview Pipeline | 3/3 | Complete    | 2026-06-15 |
-| 2. Code-Aware Triage and Answers | 1/3 | In Progress|  |
+| 2. Code-Aware Triage and Answers | 2/3 | In Progress|  |
 | 3. Stale Cleanup and Controlled Apply | 0/3 | Not started | - |
 | 4. Summary, Tests, and Operator Docs | 0/3 | Not started | - |
