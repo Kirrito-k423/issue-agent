@@ -43,8 +43,8 @@ Requirements for the initial release. Each maps to roadmap phases.
 
 ### Answer Drafting
 
-- [ ] **ANS-01**: User can generate preview-only draft replies for code logic or usage questions when evidence supports an answer.
-- [ ] **ANS-02**: Draft replies cite source files, docs, issue comments, or PR references used as evidence.
+- [x] **ANS-01**: User can generate preview-only draft replies for code logic or usage questions when evidence supports an answer.
+- [x] **ANS-02**: Draft replies cite source files, docs, issue comments, or PR references used as evidence.
 - [x] **ANS-03**: Reply-worthiness is assessed separately from reply generation, so low-evidence issues are skipped.
 
 ### Stale Cleanup
@@ -148,8 +148,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SAFE-03 | Phase 1 | Complete |
 | SAFE-04 | Phase 3 | Pending |
 | SAFE-05 | Phase 1 | Complete |
-| ANS-01 | Phase 2 | Pending |
-| ANS-02 | Phase 2 | Pending |
+| ANS-01 | Phase 2 | Complete |
+| ANS-02 | Phase 2 | Complete |
 | ANS-03 | Phase 2 | Complete |
 | CLOSE-01 | Phase 3 | Pending |
 | CLOSE-02 | Phase 3 | Pending |

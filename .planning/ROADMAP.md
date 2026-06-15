@@ -14,7 +14,7 @@ Issue Agent starts with a safe preview pipeline, then adds code-aware issue unde
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Core Preview Pipeline** - Config, GitHub intake, schemas, classifier preview, and bounded state. (completed 2026-06-15)
-- [ ] **Phase 2: Code-Aware Triage and Answers** - CodeGraph-first evidence, no-answer gates, and answer previews.
+- [x] **Phase 2: Code-Aware Triage and Answers** - CodeGraph-first evidence, no-answer gates, and answer previews. (completed 2026-06-15)
 - [ ] **Phase 3: Stale Cleanup and Controlled Apply** - Evidence-based stale cleanup plus explicit GitHub apply mode.
 - [ ] **Phase 4: Summary, Tests, and Operator Docs** - Aggregate reporting, fixture coverage, proxy docs, and workflow hardening.
 
@@ -72,7 +72,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 02-03: Source-backed answer draft previews and reply-worthiness policy
+- [x] 02-03: Source-backed answer draft previews and reply-worthiness policy
 
 ### Phase 3: Stale Cleanup and Controlled Apply
 
@@ -124,6 +124,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Core Preview Pipeline | 3/3 | Complete    | 2026-06-15 |
-| 2. Code-Aware Triage and Answers | 2/3 | In Progress|  |
+| 2. Code-Aware Triage and Answers | 3/3 | Complete   | 2026-06-15 |
 | 3. Stale Cleanup and Controlled Apply | 0/3 | Not started | - |
 | 4. Summary, Tests, and Operator Docs | 0/3 | Not started | - |
