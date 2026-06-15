@@ -1,6 +1,6 @@
 from collections.abc import Iterable
 
-from issue_agent.models import PreviewRecord
+from issue_agent.models import ClosureDecision, PreviewRecord
 
 
 def render_classification_preview(records: Iterable[PreviewRecord]) -> str:
@@ -55,6 +55,27 @@ def render_answer_preview(records: Iterable[PreviewRecord]) -> str:
     return "\n".join(lines)
 
 
+def render_close_preview(records: Iterable[ClosureDecision]) -> str:
+    lines = [
+        "# Issue Agent Close Preview",
+        "",
+        "Mode: preview",
+        "Safety: no GitHub issues were closed.",
+        "",
+        "| Issue | Suitable | Reason | Risk | Evidence | Draft |",
+        "|-------|----------|--------|------|----------|-------|",
+    ]
+    for record in records:
+        evidence = _first_closure_evidence(record)
+        draft = "yes" if record.draft_comment else "-"
+        lines.append(
+            f"| #{record.issue_number} | {str(record.suitable_to_close).lower()} | "
+            f"{record.closure_reason} | {record.risk_level} | {evidence} | {draft} |"
+        )
+    lines.append("")
+    return "\n".join(lines)
+
+
 def _first_evidence(record: PreviewRecord) -> dict[str, str]:
     if not record.evidence_refs:
         return {"lookup_mode": "-", "value": "-"}
@@ -63,3 +84,9 @@ def _first_evidence(record: PreviewRecord) -> dict[str, str]:
         "lookup_mode": ref.lookup_mode or "-",
         "value": (ref.path or ref.value or "-").replace("|", "\\|"),
     }
+
+
+def _first_closure_evidence(record: ClosureDecision) -> str:
+    if not record.evidence_refs:
+        return "-"
+    return record.evidence_refs[0].value.replace("|", "\\|")

@@ -3,8 +3,8 @@ from pathlib import Path
 from typing import Any
 
 from issue_agent.answer import render_answer_draft
-from issue_agent.models import BatchPreview, PreviewRecord
-from issue_agent.preview import render_answer_preview, render_classification_preview
+from issue_agent.models import BatchPreview, ClosureDecision, PreviewRecord
+from issue_agent.preview import render_answer_preview, render_classification_preview, render_close_preview
 
 
 def _read_records(path: Path) -> dict[str, Any]:
@@ -82,4 +82,33 @@ def write_answer_preview(state_root: Path, records: list[PreviewRecord]) -> dict
         "pending_batch": pending_path,
         "latest_preview": preview_path,
         "drafts": drafts_root,
+    }
+
+
+def write_close_preview(state_root: Path, records: list[ClosureDecision]) -> dict[str, Path]:
+    workflow_root = state_root / "close"
+    workflow_root.mkdir(parents=True, exist_ok=True)
+
+    records_path = workflow_root / "records.json"
+    pending_path = workflow_root / "pending-batch.json"
+    preview_path = workflow_root / "latest-preview.md"
+
+    current = _read_records(records_path)
+    serialized_records = [record.model_dump(mode="json") for record in records]
+    for record in serialized_records:
+        current[str(record["issue_number"])] = record
+
+    batch = {
+        "mode": "preview",
+        "workflow": "close",
+        "records": serialized_records,
+    }
+    records_path.write_text(json.dumps(current, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    pending_path.write_text(json.dumps(batch, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    preview_path.write_text(render_close_preview(records), encoding="utf-8")
+
+    return {
+        "records": records_path,
+        "pending_batch": pending_path,
+        "latest_preview": preview_path,
     }
