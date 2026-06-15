@@ -91,7 +91,7 @@ def _kind_from_url(url: str) -> LinkedReferenceKind:
 
 
 def _infer_relation(text: str, start: int, end: int) -> LinkedReferenceRelation:
-    window = text[max(0, start - 80) : min(len(text), end + 80)].lower()
+    window = text[max(0, start - 160) : min(len(text), end + 160)].lower()
     if "duplicate" in window or "dupe" in window:
         return "duplicate"
     if "supersed" in window or "replaced by" in window or "migrated to" in window:

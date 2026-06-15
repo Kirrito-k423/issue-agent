@@ -1,6 +1,12 @@
 from issue_agent.models import LinkedReference
+from pathlib import Path
+
+from issue_agent.github import load_fixture_issues
 from issue_agent.links import extract_linked_references
 from issue_agent.models import IssueInput, IssueComment
+
+
+FIXTURE_PATH = Path("examples/issues.fixture.json")
 
 
 def test_linked_reference_serializes_structured_fields() -> None:
@@ -74,6 +80,23 @@ def test_extracts_pull_request_url_kind() -> None:
     assert references[0].kind == "pull_request"
     assert references[0].number == 789
     assert references[0].relation == "resolved_by"
+
+
+def test_fixture_contains_old_help_wanted_issue_with_linked_pr() -> None:
+    issue = next(issue for issue in load_fixture_issues(FIXTURE_PATH) if issue.number == 5)
+
+    references = extract_linked_references(issue, "Kirrito-k423/issue-agent")
+
+    assert "help wanted" in issue.labels
+    assert any(ref.kind == "pull_request" and ref.number == 77 for ref in references)
+
+
+def test_fixture_contains_waiting_for_info_evidence() -> None:
+    issue = next(issue for issue in load_fixture_issues(FIXTURE_PATH) if issue.number == 6)
+
+    references = extract_linked_references(issue, "Kirrito-k423/issue-agent")
+
+    assert any(ref.relation == "waiting_for_info" for ref in references)
 
 
 def _issue(body: str = "", comments: list[IssueComment] | None = None) -> IssueInput:
