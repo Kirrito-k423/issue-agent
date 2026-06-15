@@ -117,7 +117,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Preview Pipeline | 3/3 | Complete   | 2026-06-15 |
+| 1. Core Preview Pipeline | 3/3 | Complete    | 2026-06-15 |
 | 2. Code-Aware Triage and Answers | 0/3 | Not started | - |
 | 3. Stale Cleanup and Controlled Apply | 0/3 | Not started | - |
 | 4. Summary, Tests, and Operator Docs | 0/3 | Not started | - |
