@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Issue Classify"
+  short_description: "Classify GitHub issues with bounded state."
+  default_prompt: "Use $github-issue-classify to classify the next unprocessed GitHub issue batch in preview mode."

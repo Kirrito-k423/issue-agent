@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Issue Reply"
+  short_description: "Draft bilingual replies with bounded records."
+  default_prompt: "Use $github-issue-reply to assess reply-worthy GitHub issues and store each reply separately."

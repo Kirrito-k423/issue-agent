@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Issue Close"
+  short_description: "中文评估 issue 关闭并维护有界记录。"
+  default_prompt: "Use $github-issue-close to preview the next oldest GitHub issues with Chinese state descriptions and close decisions."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Issue Summary"
+  short_description: "Summarize automation runs to a tracking page."
+  default_prompt: "Use $github-issue-summary to preview the configured issue automation tracking report."
