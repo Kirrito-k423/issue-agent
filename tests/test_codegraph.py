@@ -41,10 +41,10 @@ def test_has_codegraph_index_detects_fixture_repo() -> None:
 
 
 def test_lookup_uses_codegraph_before_fallback_when_index_exists() -> None:
-    calls: list[list[str]] = []
+    calls: list[tuple[list[str], Path]] = []
 
-    def runner(argv: list[str]) -> SimpleNamespace:
-        calls.append(argv)
+    def runner(argv: list[str], cwd: Path) -> SimpleNamespace:
+        calls.append((argv, cwd))
         return SimpleNamespace(
             returncode=0,
             stdout="example_module.py:1:def preview_safety() -> str:",
@@ -53,8 +53,9 @@ def test_lookup_uses_codegraph_before_fallback_when_index_exists() -> None:
 
     evidence = lookup_source_evidence(FIXTURE_REPO, "preview safety", runner=runner)
 
-    assert calls[0][:2] == ["codegraph", "explore"]
-    assert calls[0][2] == "preview safety"
+    assert calls[0][0][:2] == ["codegraph", "explore"]
+    assert calls[0][0][2] == "preview safety"
+    assert calls[0][1] == FIXTURE_REPO.resolve()
     assert evidence[0].lookup_mode == "codegraph"
     assert evidence[0].codegraph_available is True
     assert evidence[0].path == "example_module.py"
@@ -77,15 +78,16 @@ def test_lookup_falls_back_when_codegraph_index_is_missing(tmp_path: Path) -> No
 
 
 def test_lookup_records_codegraph_failure_before_fallback() -> None:
-    calls: list[list[str]] = []
+    calls: list[tuple[list[str], Path]] = []
 
-    def runner(argv: list[str]) -> SimpleNamespace:
-        calls.append(argv)
+    def runner(argv: list[str], cwd: Path) -> SimpleNamespace:
+        calls.append((argv, cwd))
         return SimpleNamespace(returncode=2, stdout="", stderr="codegraph failed")
 
     evidence = lookup_source_evidence(FIXTURE_REPO, "preview safety", runner=runner)
 
-    assert calls[0][:2] == ["codegraph", "explore"]
+    assert calls[0][0][:2] == ["codegraph", "explore"]
+    assert calls[0][1] == FIXTURE_REPO.resolve()
     assert evidence[0].lookup_mode == "fallback_search"
     assert "codegraph_failed" in evidence[0].fallback_reason
     assert evidence[0].path == "example_module.py"

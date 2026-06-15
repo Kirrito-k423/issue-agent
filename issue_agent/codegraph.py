@@ -13,7 +13,7 @@ class CommandResult(Protocol):
     stderr: str
 
 
-CommandRunner = Callable[[Sequence[str]], CommandResult]
+CommandRunner = Callable[[Sequence[str], Path], CommandResult]
 
 _SOURCE_PATH_RE = re.compile(r"(?P<path>[\w./-]+\.(?:py|md|toml|ya?ml|json))")
 _SEARCH_EXTENSIONS = {".py", ".md", ".toml", ".yaml", ".yml", ".json"}
@@ -34,7 +34,7 @@ def lookup_source_evidence(
 
     if has_codegraph_index(target_root):
         try:
-            result = command_runner(["codegraph", "explore", query])
+            result = command_runner(["codegraph", "explore", query], target_root)
         except Exception:
             return _fallback_search(target_root, query, True, "codegraph_failed")
         if result.returncode == 0 and result.stdout.strip():
@@ -44,11 +44,12 @@ def lookup_source_evidence(
     return _fallback_search(target_root, query, False, "codegraph_missing")
 
 
-def _run_command(argv: Sequence[str]) -> subprocess.CompletedProcess[str]:
+def _run_command(argv: Sequence[str], cwd: Path) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         list(argv),
         capture_output=True,
         check=False,
+        cwd=cwd,
         text=True,
     )
 
