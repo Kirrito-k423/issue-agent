@@ -1,11 +1,18 @@
+import json
 from pathlib import Path
 
 import typer
-from rich.console import Console
+
+from issue_agent.config import load_config
+from issue_agent.state import write_batch_preview
 
 
 app = typer.Typer(help="Preview-first GitHub issue triage assistant.")
-console = Console()
+
+
+@app.callback()
+def main() -> None:
+    """Preview-first GitHub issue triage assistant."""
 
 
 @app.command()
@@ -15,10 +22,27 @@ def preview(
     state_root: Path | None = typer.Option(None, "--state-root", help="Override preview state root."),
 ) -> None:
     """Run a local preview classification pass."""
-    target_state = state_root or Path(".issue-agent/state")
-    console.print(f"Preview requested for {issues_file} using {config}")
-    console.print(f"State root: {target_state}")
-    console.print("Mode: preview; no GitHub issues were changed.")
+    app_config = load_config(config)
+    target_state = state_root or app_config.state_root
+    issues = json.loads(issues_file.read_text(encoding="utf-8"))
+    records = [
+        {
+            "issue_number": issue["number"],
+            "title": issue["title"],
+            "category": "unknown_unsafe",
+            "status": "preview_only",
+            "model_provider": app_config.provider.name,
+            "labels_proposed": list(issue.get("labels", [])),
+            "labels_available": list(app_config.label_policy.allowed_labels),
+            "labels_rejected": [],
+            "no_action_reason": "Phase 1 skeleton records previews only.",
+            "github_mutation_applied": False,
+        }
+        for issue in issues[: app_config.batch_size]
+    ]
+    paths = write_batch_preview(target_state, "classify", records)
+    typer.echo("Mode: preview; no GitHub issues were changed.")
+    typer.echo(f"Latest preview: {paths['latest_preview']}")
 
 
 if __name__ == "__main__":
