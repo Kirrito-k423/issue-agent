@@ -91,11 +91,11 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 03-01: Linked issue and PR evidence extraction for stale cleanup
+- [x] 03-01: Linked issue and PR evidence extraction for stale cleanup
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 03-02: Closure policy and stale recommendation previews
+- [x] 03-02: Closure policy and stale recommendation previews
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -131,5 +131,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Core Preview Pipeline | 3/3 | Complete    | 2026-06-15 |
 | 2. Code-Aware Triage and Answers | 3/3 | Complete   | 2026-06-15 |
-| 3. Stale Cleanup and Controlled Apply | 0/3 | Planned    |  |
+| 3. Stale Cleanup and Controlled Apply | 2/3 | In Progress|  |
 | 4. Summary, Tests, and Operator Docs | 0/3 | Not started | - |
