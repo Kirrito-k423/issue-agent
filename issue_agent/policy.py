@@ -45,9 +45,29 @@ def evaluate_answer_policy(
             required_evidence=["run_evidence"],
         )
 
+    if proposal.category == "code_logic_question" and not _has_source_evidence(source_refs):
+        return AnswerPolicyDecision(
+            reply_worthy=False,
+            status="human_review",
+            reason="missing_source_evidence",
+            required_evidence=["source_evidence"],
+        )
+
+    if proposal.category == "unknown_unsafe" or proposal.confidence < 0.5:
+        return AnswerPolicyDecision(
+            reply_worthy=False,
+            status="human_review",
+            reason=proposal.no_action_reason or "unknown_unsafe",
+            required_evidence=proposal.evidence_needs or ["human_review"],
+        )
+
     return AnswerPolicyDecision(
         reply_worthy=True,
         status="draft_ready",
         reason="evidence_policy_passed",
         required_evidence=[] if source_refs or run_refs else [],
     )
+
+
+def _has_source_evidence(evidence_refs: Sequence[EvidenceRef]) -> bool:
+    return any(ref.kind == "source" and bool(ref.path) for ref in evidence_refs)

@@ -1,4 +1,4 @@
-from issue_agent.models import ClassifierProposal, IssueInput
+from issue_agent.models import ClassifierProposal, EvidenceRef, IssueInput
 from issue_agent.policy import evaluate_answer_policy
 
 
@@ -33,3 +33,34 @@ def test_experiment_reproduction_without_run_evidence_is_not_reply_worthy() -> N
     assert decision.reply_worthy is False
     assert decision.reason == "requires_unverified_reproduction"
     assert decision.status == "request_info"
+
+
+def test_code_logic_question_without_source_evidence_is_not_reply_worthy() -> None:
+    decision = evaluate_answer_policy(_issue(), _proposal("code_logic_question"), source_evidence=[])
+
+    assert decision.reply_worthy is False
+    assert decision.reason == "missing_source_evidence"
+    assert decision.required_evidence == ["source_evidence"]
+
+
+def test_code_logic_question_with_source_evidence_is_reply_worthy() -> None:
+    evidence = EvidenceRef(
+        kind="source",
+        value="example_module.py",
+        reason="Shows preview safety.",
+        lookup_mode="fallback_search",
+        path="example_module.py",
+        snippet="def preview_safety() -> str:",
+    )
+
+    decision = evaluate_answer_policy(_issue(), _proposal("code_logic_question"), source_evidence=[evidence])
+
+    assert decision.reply_worthy is True
+    assert decision.status == "draft_ready"
+
+
+def test_unknown_unsafe_proposal_remains_human_review() -> None:
+    decision = evaluate_answer_policy(_issue(), _proposal("unknown_unsafe"))
+
+    assert decision.reply_worthy is False
+    assert decision.status == "human_review"
