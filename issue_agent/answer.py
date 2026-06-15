@@ -68,3 +68,24 @@ def _collect_answer_evidence(
 
 def _issue_query(issue: IssueInput) -> str:
     return " ".join(part for part in [issue.title, issue.body] if part)
+
+
+def render_answer_draft(record: PreviewRecord) -> str:
+    evidence_lines = []
+    for ref in record.evidence_refs:
+        citation = ref.path or ref.value
+        detail = f" — {ref.snippet}" if ref.snippet else ""
+        evidence_lines.append(f"- {citation}: {ref.reason}{detail}")
+    evidence = "\n".join(evidence_lines) or "- No supporting evidence recorded."
+    return "\n".join(
+        [
+            f"# Draft reply for issue #{record.issue_number}",
+            "",
+            "Thank you for the question. Based on the evidence currently available:",
+            "",
+            evidence,
+            "",
+            "This is a local preview draft only. No GitHub comment has been posted.",
+            "",
+        ]
+    )

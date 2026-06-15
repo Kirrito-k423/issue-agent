@@ -4,6 +4,7 @@ from issue_agent.answer import build_answer_preview_records
 from issue_agent.classifier import FixtureClassifierProvider
 from issue_agent.github import load_fixture_issues
 from issue_agent.models import EvidenceRef
+from issue_agent.state import write_answer_preview
 
 
 FIXTURE_ISSUES = Path("examples/issues.fixture.json")
@@ -45,3 +46,33 @@ def test_reproduction_issues_do_not_get_draft_paths_without_run_evidence() -> No
     assert reproduction_record.answer_policy.reason == "requires_unverified_reproduction"
     assert reproduction_record.draft_path is None
     assert reproduction_record.github_mutation_applied is False
+
+
+def test_write_answer_preview_creates_bounded_state_and_drafts(tmp_path) -> None:
+    issues = load_fixture_issues(FIXTURE_ISSUES)
+    records = build_answer_preview_records(issues, Path("tests/fixtures/source_repo"), FixtureClassifierProvider(), _source_lookup)
+
+    paths = write_answer_preview(tmp_path, records)
+
+    assert paths["records"].exists()
+    assert paths["pending_batch"].exists()
+    assert paths["latest_preview"].exists()
+    assert (tmp_path / "answer" / "drafts" / "issue-3.md").exists()
+    assert not (tmp_path / "answer" / "drafts" / "issue-4.md").exists()
+
+
+def test_reprocessing_answer_preview_replaces_records_entry(tmp_path) -> None:
+    issues = load_fixture_issues(FIXTURE_ISSUES)
+    records = build_answer_preview_records(issues, Path("tests/fixtures/source_repo"), FixtureClassifierProvider(), _source_lookup)
+    code_record = [record for record in records if record.issue_number == 3]
+
+    write_answer_preview(tmp_path, code_record)
+    code_record[0].title = "Replacement title"
+    write_answer_preview(tmp_path, code_record)
+
+    import json
+
+    data = json.loads((tmp_path / "answer" / "records.json").read_text(encoding="utf-8"))
+    assert list(data) == ["3"]
+    assert data["3"]["title"] == "Replacement title"
+    assert data["3"]["draft_path"] == "answer/drafts/issue-3.md"
