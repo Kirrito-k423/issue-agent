@@ -17,7 +17,7 @@ Requirements for the initial release. Each maps to roadmap phases.
 
 - [x] **GH-01**: User can fetch open GitHub issues in deterministic batches with title, body, labels, author, URL, timestamps, and comments.
 - [x] **GH-02**: User can fetch the repository's existing label set and prevent proposals for labels that do not exist.
-- [ ] **GH-03**: User can inspect linked issue and PR references needed for stale cleanup decisions.
+- [x] **GH-03**: User can inspect linked issue and PR references needed for stale cleanup decisions.
 
 ### Classification
 
@@ -38,7 +38,7 @@ Requirements for the initial release. Each maps to roadmap phases.
 - [x] **SAFE-01**: Experiment, hardware, dependency, or environment reproduction issues are not answered unless verified run evidence exists.
 - [x] **SAFE-02**: Under uncertainty, the agent emits no public mutation and records why the issue needs human review or more information.
 - [x] **SAFE-03**: Public comments, labels, and closures are impossible in preview mode.
-- [ ] **SAFE-04**: Closure recommendations require explicit evidence for resolved, duplicate, superseded, unsupported, or waiting-for-information status.
+- [x] **SAFE-04**: Closure recommendations require explicit evidence for resolved, duplicate, superseded, unsupported, or waiting-for-information status.
 - [x] **SAFE-05**: The agent never creates new GitHub labels unless the user explicitly enables label creation.
 
 ### Answer Drafting
@@ -50,7 +50,7 @@ Requirements for the initial release. Each maps to roadmap phases.
 ### Stale Cleanup
 
 - [ ] **CLOSE-01**: User can preview stale issue or PR cleanup recommendations with current state, closure reason, evidence references, and risk level.
-- [ ] **CLOSE-02**: Roadmap, help-wanted, open contribution, and open-PR issues are not recommended for closure unless clear supersession or completion evidence exists.
+- [x] **CLOSE-02**: Roadmap, help-wanted, open contribution, and open-PR issues are not recommended for closure unless clear supersession or completion evidence exists.
 - [ ] **CLOSE-03**: User can apply approved closure actions only in explicit apply mode.
 
 ### State and Review
@@ -134,7 +134,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CONF-03 | Phase 1 | Complete |
 | GH-01 | Phase 1 | Complete |
 | GH-02 | Phase 1 | Complete |
-| GH-03 | Phase 3 | Pending |
+| GH-03 | Phase 3 | Complete |
 | CLSF-01 | Phase 1 | Complete |
 | CLSF-02 | Phase 1 | Complete |
 | CLSF-03 | Phase 1 | Complete |
@@ -146,13 +146,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SAFE-01 | Phase 2 | Complete |
 | SAFE-02 | Phase 2 | Complete |
 | SAFE-03 | Phase 1 | Complete |
-| SAFE-04 | Phase 3 | Pending |
+| SAFE-04 | Phase 3 | Complete |
 | SAFE-05 | Phase 1 | Complete |
 | ANS-01 | Phase 2 | Complete |
 | ANS-02 | Phase 2 | Complete |
 | ANS-03 | Phase 2 | Complete |
 | CLOSE-01 | Phase 3 | Pending |
-| CLOSE-02 | Phase 3 | Pending |
+| CLOSE-02 | Phase 3 | Complete |
 | CLOSE-03 | Phase 3 | Pending |
 | STATE-01 | Phase 1 | Complete |
 | STATE-02 | Phase 1 | Complete |
