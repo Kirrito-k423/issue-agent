@@ -1,7 +1,10 @@
 from pathlib import Path
 
+from typer.testing import CliRunner
+
 from issue_agent.answer import build_answer_preview_records
 from issue_agent.classifier import FixtureClassifierProvider
+from issue_agent.cli import app
 from issue_agent.github import load_fixture_issues
 from issue_agent.models import EvidenceRef
 from issue_agent.state import write_answer_preview
@@ -76,3 +79,28 @@ def test_reprocessing_answer_preview_replaces_records_entry(tmp_path) -> None:
     assert list(data) == ["3"]
     assert data["3"]["title"] == "Replacement title"
     assert data["3"]["draft_path"] == "answer/drafts/issue-3.md"
+
+
+def test_answer_preview_cli_writes_local_artifacts(tmp_path) -> None:
+    runner = CliRunner()
+    result = runner.invoke(
+        app,
+        [
+            "answer-preview",
+            "--config",
+            "examples/config.yaml",
+            "--issues-file",
+            "examples/issues.fixture.json",
+            "--repo-root",
+            "tests/fixtures/source_repo",
+            "--state-root",
+            str(tmp_path),
+        ],
+    )
+
+    assert result.exit_code == 0, result.output
+    assert "no GitHub comments were posted" in result.output
+    assert (tmp_path / "answer" / "records.json").exists()
+    assert (tmp_path / "answer" / "pending-batch.json").exists()
+    assert (tmp_path / "answer" / "latest-preview.md").exists()
+    assert (tmp_path / "answer" / "drafts" / "issue-3.md").exists()

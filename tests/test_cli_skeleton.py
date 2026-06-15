@@ -32,7 +32,7 @@ def test_preview_writes_bounded_state_artifacts(tmp_path) -> None:
 
     records = json.loads(records_path.read_text(encoding="utf-8"))
     assert isinstance(records, dict)
-    assert set(records) == {"1", "2"}
+    assert set(records) == {"1", "2", "3", "4"}
     assert records["1"]["github_mutation_applied"] is False
     assert "model_proposal" in records["1"]
     assert "policy_decision" in records["1"]

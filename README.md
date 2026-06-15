@@ -10,9 +10,15 @@ python -m issue_agent.cli preview \
   --config examples/config.yaml \
   --issues-file examples/issues.fixture.json \
   --state-root /tmp/issue-agent-preview
+
+python -m issue_agent.cli answer-preview \
+  --config examples/config.yaml \
+  --issues-file examples/issues.fixture.json \
+  --repo-root tests/fixtures/source_repo \
+  --state-root /tmp/issue-agent-answer-preview
 ```
 
-The preview command writes local artifacts only. It does not edit, comment on, close, or label GitHub issues.
+The preview commands write local artifacts only. They do not edit, comment on, close, or label GitHub issues.
 
 ## Configuration
 
@@ -34,3 +40,4 @@ Use the proxy variables when local GitHub or model-provider access needs the Chi
 - Model output is treated as proposal data, not an action source.
 - State is bounded under `.issue-agent/state/<owner>__<repo>/`.
 - Missing GitHub labels are rejected rather than created.
+- Answer drafts require supporting evidence and are written locally under `answer/drafts/`.

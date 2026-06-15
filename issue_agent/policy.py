@@ -45,20 +45,28 @@ def evaluate_answer_policy(
             required_evidence=["run_evidence"],
         )
 
-    if proposal.category == "code_logic_question" and not _has_source_evidence(source_refs):
-        return AnswerPolicyDecision(
-            reply_worthy=False,
-            status="human_review",
-            reason="missing_source_evidence",
-            required_evidence=["source_evidence"],
-        )
-
     if proposal.category == "unknown_unsafe" or proposal.confidence < 0.5:
         return AnswerPolicyDecision(
             reply_worthy=False,
             status="human_review",
             reason=proposal.no_action_reason or "unknown_unsafe",
             required_evidence=proposal.evidence_needs or ["human_review"],
+        )
+
+    if proposal.category not in {"code_logic_question", "usage_question", "experiment_reproduction"}:
+        return AnswerPolicyDecision(
+            reply_worthy=False,
+            status="skipped",
+            reason="unsupported_answer_category",
+            required_evidence=[],
+        )
+
+    if proposal.category == "code_logic_question" and not _has_source_evidence(source_refs):
+        return AnswerPolicyDecision(
+            reply_worthy=False,
+            status="human_review",
+            reason="missing_source_evidence",
+            required_evidence=["source_evidence"],
         )
 
     return AnswerPolicyDecision(

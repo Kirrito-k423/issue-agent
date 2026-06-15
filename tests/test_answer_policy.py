@@ -64,3 +64,10 @@ def test_unknown_unsafe_proposal_remains_human_review() -> None:
 
     assert decision.reply_worthy is False
     assert decision.status == "human_review"
+
+
+def test_bug_report_is_not_answer_preview_category() -> None:
+    decision = evaluate_answer_policy(_issue(), _proposal("bug_report"))
+
+    assert decision.reply_worthy is False
+    assert decision.reason == "unsupported_answer_category"
