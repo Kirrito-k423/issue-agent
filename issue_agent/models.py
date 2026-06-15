@@ -75,6 +75,14 @@ class PolicyDecision(BaseModel):
     reason: str
 
 
+class AnswerPolicyDecision(BaseModel):
+    reply_worthy: bool
+    status: Literal["draft_ready", "request_info", "human_review", "blocked", "skipped"]
+    reason: str
+    required_evidence: list[str] = Field(default_factory=list)
+    draft_path: str | None = None
+
+
 class PreviewRecord(BaseModel):
     issue_number: int
     title: str

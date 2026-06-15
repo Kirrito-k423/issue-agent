@@ -1,4 +1,6 @@
-from issue_agent.models import ClassifierProposal, LabelRejection, PolicyDecision
+from collections.abc import Sequence
+
+from issue_agent.models import AnswerPolicyDecision, ClassifierProposal, EvidenceRef, IssueInput, LabelRejection, PolicyDecision
 
 
 def apply_policy(proposal: ClassifierProposal, available_labels: set[str]) -> PolicyDecision:
@@ -22,4 +24,30 @@ def apply_policy(proposal: ClassifierProposal, available_labels: set[str]) -> Po
         labels_rejected=labels_rejected,
         status="preview_ready",
         reason="preview_only_policy_passed",
+    )
+
+
+def evaluate_answer_policy(
+    issue: IssueInput,
+    proposal: ClassifierProposal,
+    source_evidence: Sequence[EvidenceRef] | None = None,
+    run_evidence: Sequence[EvidenceRef] | None = None,
+) -> AnswerPolicyDecision:
+    del issue
+    source_refs = list(source_evidence or [])
+    run_refs = list(run_evidence or [])
+
+    if proposal.category == "experiment_reproduction" and not run_refs:
+        return AnswerPolicyDecision(
+            reply_worthy=False,
+            status="request_info",
+            reason="requires_unverified_reproduction",
+            required_evidence=["run_evidence"],
+        )
+
+    return AnswerPolicyDecision(
+        reply_worthy=True,
+        status="draft_ready",
+        reason="evidence_policy_passed",
+        required_evidence=[] if source_refs or run_refs else [],
     )
