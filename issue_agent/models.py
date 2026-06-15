@@ -25,6 +25,15 @@ LinkedReferenceRelation = Literal[
     "unknown",
 ]
 LinkedReferenceStatus = Literal["open", "closed", "merged", "unknown", "unresolved"]
+ClosureReason = Literal[
+    "resolved",
+    "duplicate",
+    "superseded",
+    "unsupported",
+    "stale_waiting_for_info",
+    "not_suitable",
+]
+RiskLevel = Literal["low", "medium", "high"]
 
 
 class IssueComment(BaseModel):
@@ -73,6 +82,19 @@ class LinkedReference(BaseModel):
     reason: str
     status: LinkedReferenceStatus = "unknown"
     url: str | None = None
+
+
+class ClosureDecision(BaseModel):
+    issue_number: int
+    suitable_to_close: bool
+    closure_reason: ClosureReason
+    risk_level: RiskLevel
+    reason: str
+    current_state: str
+    evidence_refs: list[EvidenceRef] = Field(default_factory=list)
+    linked_references: list[LinkedReference] = Field(default_factory=list)
+    draft_comment: str | None = None
+    github_mutation_applied: bool = False
 
 
 class ClassifierProposal(BaseModel):
