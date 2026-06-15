@@ -1,0 +1,30 @@
+[
+  {
+    "number": 1,
+    "title": "Question: how does preview mode avoid changing GitHub issues?",
+    "body": "I want to understand whether running the tool can edit labels or comments.",
+    "labels": ["question"],
+    "author": "maintainer-a",
+    "url": "https://github.com/Kirrito-k423/issue-agent/issues/1",
+    "created_at": "2026-06-01T10:00:00Z",
+    "updated_at": "2026-06-02T10:00:00Z",
+    "comments": [
+      {
+        "author": "maintainer-a",
+        "body": "Preview output should be local only.",
+        "created_at": "2026-06-01T10:30:00Z"
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "title": "Bug: invalid model JSON should not reach apply mode",
+    "body": "A malformed provider response should become human review instead of a public action.",
+    "labels": ["bug"],
+    "author": "maintainer-b",
+    "url": "https://github.com/Kirrito-k423/issue-agent/issues/2",
+    "created_at": "2026-06-03T09:00:00Z",
+    "updated_at": "2026-06-03T12:00:00Z",
+    "comments": []
+  }
+]

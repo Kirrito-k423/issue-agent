@@ -1,0 +1,13 @@
+repo: Kirrito-k423/issue-agent
+state_root: .issue-agent/state/Kirrito-k423__issue-agent
+batch_size: 20
+write_policy: preview
+provider:
+  name: fixture
+  base_url:
+  api_key_env: MINIMAX_API_KEY
+label_policy:
+  allowed_labels:
+    - bug
+    - question
+    - enhancement
