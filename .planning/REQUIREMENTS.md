@@ -22,9 +22,9 @@ Requirements for the initial release. Each maps to roadmap phases.
 ### Classification
 
 - [x] **CLSF-01**: User can run an LLM-backed classifier that returns a structured decision schema for each issue.
-- [ ] **CLSF-02**: Classifier decisions include category, confidence, proposed action, evidence requirements, no-action reason, and proposed labels.
-- [ ] **CLSF-03**: Classifier supports at least these categories: experiment/reproduction, code logic question, usage question, stale cleanup candidate, feature/enhancement, bug report, and unknown/unsafe.
-- [ ] **CLSF-04**: Invalid model output is rejected or repaired once; unresolved invalid output becomes human review instead of public action.
+- [x] **CLSF-02**: Classifier decisions include category, confidence, proposed action, evidence requirements, no-action reason, and proposed labels.
+- [x] **CLSF-03**: Classifier supports at least these categories: experiment/reproduction, code logic question, usage question, stale cleanup candidate, feature/enhancement, bug report, and unknown/unsafe.
+- [x] **CLSF-04**: Invalid model output is rejected or repaired once; unresolved invalid output becomes human review instead of public action.
 
 ### Code Evidence
 
@@ -136,9 +136,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GH-02 | Phase 1 | Complete |
 | GH-03 | Phase 3 | Pending |
 | CLSF-01 | Phase 1 | Complete |
-| CLSF-02 | Phase 1 | Pending |
-| CLSF-03 | Phase 1 | Pending |
-| CLSF-04 | Phase 1 | Pending |
+| CLSF-02 | Phase 1 | Complete |
+| CLSF-03 | Phase 1 | Complete |
+| CLSF-04 | Phase 1 | Complete |
 | CODE-01 | Phase 2 | Pending |
 | CODE-02 | Phase 2 | Pending |
 | CODE-03 | Phase 2 | Pending |
