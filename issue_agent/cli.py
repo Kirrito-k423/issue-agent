@@ -10,7 +10,14 @@ from issue_agent.config import load_config
 from issue_agent.github import load_fixture_issues, load_fixture_labels
 from issue_agent.models import ApplyAction, PreviewRecord
 from issue_agent.policy import apply_policy
-from issue_agent.state import write_answer_preview, write_apply_results, write_batch_preview, write_close_preview
+from issue_agent.state import (
+    write_answer_preview,
+    write_apply_results,
+    write_batch_preview,
+    write_close_preview,
+    write_summary_preview,
+)
+from issue_agent.summary import build_summary_report
 
 
 app = typer.Typer(help="Preview-first GitHub issue triage assistant.")
@@ -106,6 +113,20 @@ def apply_close(
     paths = write_apply_results(state_root, results)
     typer.echo("Mode: apply; GitHub issue mutations were requested explicitly.")
     typer.echo(f"Latest apply results: {paths['latest_preview']}")
+
+
+@app.command("summary-preview")
+def summary_preview(
+    config: Path = typer.Option(..., "--config", exists=True, readable=True, help="Repository profile YAML."),
+    state_root: Path | None = typer.Option(None, "--state-root", help="Override preview state root."),
+) -> None:
+    """Run a local aggregate summary preview from existing state records."""
+    app_config = load_config(config)
+    target_state = state_root or app_config.state_root
+    report = build_summary_report(target_state)
+    paths = write_summary_preview(target_state, report)
+    typer.echo("Mode: preview; no GitHub issues were changed.")
+    typer.echo(f"Latest summary: {paths['latest_preview']}")
 
 
 def _build_apply_action(issue_number: int, action: str, label: str | None, reason: str | None) -> ApplyAction:

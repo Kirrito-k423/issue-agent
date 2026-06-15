@@ -3,8 +3,14 @@ from pathlib import Path
 from typing import Any
 
 from issue_agent.answer import render_answer_draft
-from issue_agent.models import ApplyResult, BatchPreview, ClosureDecision, PreviewRecord
-from issue_agent.preview import render_answer_preview, render_apply_results, render_classification_preview, render_close_preview
+from issue_agent.models import ApplyResult, BatchPreview, ClosureDecision, PreviewRecord, SummaryReport
+from issue_agent.preview import (
+    render_answer_preview,
+    render_apply_results,
+    render_classification_preview,
+    render_close_preview,
+    render_summary_preview,
+)
 
 
 def _read_records(path: Path) -> dict[str, Any]:
@@ -127,6 +133,22 @@ def write_apply_results(state_root: Path, records: list[ApplyResult]) -> dict[st
 
     records_path.write_text(json.dumps(current, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     preview_path.write_text(render_apply_results(records), encoding="utf-8")
+
+    return {
+        "records": records_path,
+        "latest_preview": preview_path,
+    }
+
+
+def write_summary_preview(state_root: Path, report: SummaryReport) -> dict[str, Path]:
+    workflow_root = state_root / "summary"
+    workflow_root.mkdir(parents=True, exist_ok=True)
+
+    records_path = workflow_root / "records.json"
+    preview_path = workflow_root / "latest-preview.md"
+
+    records_path.write_text(json.dumps(report.model_dump(mode="json"), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    preview_path.write_text(render_summary_preview(report), encoding="utf-8")
 
     return {
         "records": records_path,

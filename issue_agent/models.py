@@ -117,6 +117,20 @@ class ApplyResult(BaseModel):
     github_mutation_applied: bool = False
 
 
+class WorkflowSummary(BaseModel):
+    workflow: str
+    present: bool
+    total_records: int = 0
+    counts: dict[str, int] = Field(default_factory=dict)
+
+
+class SummaryReport(BaseModel):
+    mode: Literal["preview"] = "preview"
+    workflows: dict[str, WorkflowSummary] = Field(default_factory=dict)
+    missing_workflows: list[str] = Field(default_factory=list)
+    github_mutation_applied: bool = False
+
+
 class ClassifierProposal(BaseModel):
     category: IssueCategory
     confidence: float = Field(ge=0.0, le=1.0)

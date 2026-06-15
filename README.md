@@ -23,6 +23,10 @@ python -m issue_agent.cli close-preview \
   --repo Kirrito-k423/issue-agent \
   --state-root /tmp/issue-agent-close-preview
 
+python -m issue_agent.cli summary-preview \
+  --config examples/config.yaml \
+  --state-root /tmp/issue-agent-close-preview
+
 python -m issue_agent.cli apply-close \
   --config examples/config.yaml \
   --repo Kirrito-k423/issue-agent \

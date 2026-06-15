@@ -52,3 +52,4 @@ def test_cli_exposes_explicit_apply_command() -> None:
 
     assert result.exit_code == 0, result.output
     assert "apply-close" in result.output
+    assert "summary-preview" in result.output

@@ -1,6 +1,6 @@
 from collections.abc import Iterable
 
-from issue_agent.models import ApplyResult, ClosureDecision, PreviewRecord
+from issue_agent.models import ApplyResult, ClosureDecision, PreviewRecord, SummaryReport
 
 
 def render_classification_preview(records: Iterable[PreviewRecord]) -> str:
@@ -93,6 +93,29 @@ def render_apply_results(records: Iterable[ApplyResult]) -> str:
             f"{record.status} | {error} |"
         )
     lines.append("")
+    return "\n".join(lines)
+
+
+def render_summary_preview(report: SummaryReport) -> str:
+    lines = [
+        "# Issue Agent Summary Preview",
+        "",
+        "Mode: preview",
+        "Safety: no GitHub issues were changed.",
+        "",
+        "| Workflow | Present | Records | Key Counts |",
+        "|----------|---------|---------|------------|",
+    ]
+    for workflow in sorted(report.workflows):
+        summary = report.workflows[workflow]
+        counts = ", ".join(f"{key}={value}" for key, value in sorted(summary.counts.items())) or "-"
+        safe_counts = counts.replace("|", "\\|")
+        lines.append(
+            f"| {summary.workflow} | {str(summary.present).lower()} | "
+            f"{summary.total_records} | {safe_counts} |"
+        )
+    missing = ", ".join(report.missing_workflows) or "-"
+    lines.extend(["", f"Missing workflows: {missing}", ""])
     return "\n".join(lines)
 
 
