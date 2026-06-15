@@ -16,7 +16,7 @@ Requirements for the initial release. Each maps to roadmap phases.
 ### GitHub Intake
 
 - [x] **GH-01**: User can fetch open GitHub issues in deterministic batches with title, body, labels, author, URL, timestamps, and comments.
-- [ ] **GH-02**: User can fetch the repository's existing label set and prevent proposals for labels that do not exist.
+- [x] **GH-02**: User can fetch the repository's existing label set and prevent proposals for labels that do not exist.
 - [ ] **GH-03**: User can inspect linked issue and PR references needed for stale cleanup decisions.
 
 ### Classification
@@ -39,7 +39,7 @@ Requirements for the initial release. Each maps to roadmap phases.
 - [ ] **SAFE-02**: Under uncertainty, the agent emits no public mutation and records why the issue needs human review or more information.
 - [x] **SAFE-03**: Public comments, labels, and closures are impossible in preview mode.
 - [ ] **SAFE-04**: Closure recommendations require explicit evidence for resolved, duplicate, superseded, unsupported, or waiting-for-information status.
-- [ ] **SAFE-05**: The agent never creates new GitHub labels unless the user explicitly enables label creation.
+- [x] **SAFE-05**: The agent never creates new GitHub labels unless the user explicitly enables label creation.
 
 ### Answer Drafting
 
@@ -133,7 +133,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CONF-02 | Phase 1 | Complete |
 | CONF-03 | Phase 1 | Complete |
 | GH-01 | Phase 1 | Complete |
-| GH-02 | Phase 1 | Pending |
+| GH-02 | Phase 1 | Complete |
 | GH-03 | Phase 3 | Pending |
 | CLSF-01 | Phase 1 | Complete |
 | CLSF-02 | Phase 1 | Pending |
@@ -147,7 +147,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SAFE-02 | Phase 2 | Pending |
 | SAFE-03 | Phase 1 | Complete |
 | SAFE-04 | Phase 3 | Pending |
-| SAFE-05 | Phase 1 | Pending |
+| SAFE-05 | Phase 1 | Complete |
 | ANS-01 | Phase 2 | Pending |
 | ANS-02 | Phase 2 | Pending |
 | ANS-03 | Phase 2 | Pending |

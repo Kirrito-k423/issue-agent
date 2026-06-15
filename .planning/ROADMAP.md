@@ -41,7 +41,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02: GitHub issue and label intake with fixture-backed tests
+- [x] 01-02: GitHub issue and label intake with fixture-backed tests
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -117,7 +117,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Preview Pipeline | 1/3 | In Progress|  |
+| 1. Core Preview Pipeline | 2/3 | In Progress|  |
 | 2. Code-Aware Triage and Answers | 0/3 | Not started | - |
 | 3. Stale Cleanup and Controlled Apply | 0/3 | Not started | - |
 | 4. Summary, Tests, and Operator Docs | 0/3 | Not started | - |
